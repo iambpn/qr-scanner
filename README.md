@@ -58,10 +58,10 @@ The token replaces the login only. The first build must still run in a terminal,
 After the first build, you can run builds without prompts, for example in CI. Use this command with `EXPO_TOKEN` set:
 
 ```bash
-EAS_NO_VCS=1 npx eas-cli@latest build --platform android --profile preview --non-interactive --no-wait
+npx eas-cli@latest build --platform android --profile preview --non-interactive --no-wait
 ```
 
-The `--no-wait` option stops the command after the build starts. The build continues on Expo servers. The script does not use these options, so you must run this command directly. You can remove `EAS_NO_VCS=1` after your first commit.
+The `--no-wait` option stops the command after the build starts. The build continues on Expo servers. The script does not use these options, so you must run this command directly.
 
 Keep the token private. Do not add the token to a file in this project.
 
@@ -82,8 +82,7 @@ scripts/build-android.sh production
 
 1. It checks the profile name.
 2. It runs `eas-cli login` if no Expo account is logged in.
-3. It sets `EAS_NO_VCS=1` if the Git repository has no commits. EAS then uploads the project folder without Git. After your first commit, the script does not set this value.
-4. It runs this command:
+3. It runs this command:
 
    ```bash
    npx eas-cli@latest build --platform android --profile preview

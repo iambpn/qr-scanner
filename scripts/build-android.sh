@@ -39,14 +39,6 @@ ensure_expo_login() {
   fi
 }
 
-# Selects the upload workflow. EAS uses Git by default, but the docs do not cover
-# a repository with no commits. In that case, EAS must copy the folder without Git.
-configure_upload_workflow() {
-  if ! git -C "$PROJECT_ROOT" rev-parse --verify HEAD >/dev/null 2>&1; then
-    export EAS_NO_VCS=1
-  fi
-}
-
 # Starts the cloud build and waits for it to finish.
 #
 # Arguments:
@@ -64,7 +56,6 @@ main() {
 
   validate_profile "$profile"
   ensure_expo_login
-  configure_upload_workflow
   start_cloud_build "$profile"
 }
 
