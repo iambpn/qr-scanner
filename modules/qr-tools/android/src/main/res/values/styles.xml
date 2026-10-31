@@ -1,0 +1,6 @@
+<resources>
+  <style name="QrToolsTransparentTheme" parent="android:Theme.Translucent.NoTitleBar">
+    <item name="android:backgroundDimEnabled">false</item>
+    <item name="android:windowAnimationStyle">@null</item>
+  </style>
+</resources>

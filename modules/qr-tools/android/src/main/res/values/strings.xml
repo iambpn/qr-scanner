@@ -1,0 +1,8 @@
+<resources>
+  <string name="qr_tools_camera_tile_label">Scan with camera</string>
+  <string name="qr_tools_screen_tile_label">Scan screen</string>
+  <string name="qr_tools_capture_channel_name">Screen scan</string>
+  <string name="qr_tools_capture_notification_title">Reading the QR code on your screen</string>
+  <string name="qr_tools_no_qr_found">No QR code found on the screen.</string>
+  <string name="qr_tools_capture_failed">Could not read the screen. Try again.</string>
+</resources>

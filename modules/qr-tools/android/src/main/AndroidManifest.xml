@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+
+  <application>
+    <service
+      android:name="expo.modules.qrtools.CameraScanTileService"
+      android:exported="true"
+      android:icon="@drawable/qr_tools_camera_tile"
+      android:label="@string/qr_tools_camera_tile_label"
+      android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+    </service>
+
+    <service
+      android:name="expo.modules.qrtools.ScreenScanTileService"
+      android:exported="true"
+      android:icon="@drawable/qr_tools_screen_tile"
+      android:label="@string/qr_tools_screen_tile_label"
+      android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+    </service>
+
+    <service
+      android:name="expo.modules.qrtools.ScreenCaptureService"
+      android:exported="false"
+      android:foregroundServiceType="mediaProjection" />
+
+    <!-- The empty task affinity keeps this activity above the app the user is reading,
+         instead of bringing the QR Scanner task to the front. -->
+    <activity
+      android:name="expo.modules.qrtools.ScreenCaptureActivity"
+      android:excludeFromRecents="true"
+      android:exported="false"
+      android:taskAffinity=""
+      android:theme="@style/QrToolsTransparentTheme" />
+  </application>
+</manifest>
