@@ -19,7 +19,8 @@ private const val SCREEN_CAPTURE_REQUEST_CODE = 7302
  *
  * The activity asks for screen capture consent and starts [ScreenCaptureService].
  * The activity stays open during the capture because Android lets a visible
- * activity open the app, but blocks that action from a background service.
+ * activity open [ScanResultActivity], but blocks that action from a background
+ * service.
  */
 class ScreenCaptureActivity : Activity() {
   /** Requests consent once. An activity restored by Android already has a request open. */
@@ -90,15 +91,15 @@ class ScreenCaptureActivity : Activity() {
   }
 
   /**
-   * Opens the app with the value, or keeps the user on the current screen and
-   * shows a short message.
+   * Shows the value in the result sheet, or shows a short message. In both cases,
+   * the user stays on the current screen.
    *
    * @param captureStatus A status value from [ScreenCaptureService].
    * @param value The decoded text, if the service found a QR code.
    */
   private fun handleCaptureResult(captureStatus: Int, value: String?) {
     if (captureStatus == ScreenCaptureService.STATUS_FOUND && value != null) {
-      startActivity(ScanDeepLinks.createScanResultIntent(this, value))
+      startActivity(ScanResultActivity.createIntent(this, value))
     } else {
       showFailureMessage(captureStatus)
     }

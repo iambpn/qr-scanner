@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 import { addWifiNetwork, copyText, type WifiAddOutcome } from '../qr/qrActions';
 import type { WifiContent } from '../qr/types';
+import { getSheetColors } from '../theme/sheetColors';
 import { ActionButton } from './ActionButton';
 
 const OUTCOME_MESSAGES: Record<Exclude<WifiAddOutcome, 'cancelled'>, string> = {
@@ -25,6 +26,7 @@ type WifiPromptProps = {
  * @returns The question and its buttons.
  */
 export function WifiPrompt({ wifi, onClose }: WifiPromptProps) {
+  const colors = getSheetColors(useColorScheme());
   const [isAdding, setIsAdding] = useState(false);
   const [outcomeMessage, setOutcomeMessage] = useState<string | null>(null);
 
@@ -46,8 +48,10 @@ export function WifiPrompt({ wifi, onClose }: WifiPromptProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.question}>Add this Wi-Fi network?</Text>
-      {outcomeMessage ? <Text style={styles.outcome}>{outcomeMessage}</Text> : null}
+      <Text style={[styles.question, { color: colors.text }]}>Add this Wi-Fi network?</Text>
+      {outcomeMessage ? (
+        <Text style={[styles.outcome, { color: colors.messageText }]}>{outcomeMessage}</Text>
+      ) : null}
       <ActionButton
         isDisabled={isAdding}
         isPrimary
@@ -67,12 +71,10 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   question: {
-    color: '#1B2430',
     fontSize: 17,
     fontWeight: '600',
   },
   outcome: {
-    color: '#3D4A5C',
     fontSize: 15,
   },
 });

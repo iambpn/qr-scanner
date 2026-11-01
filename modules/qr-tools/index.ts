@@ -43,7 +43,8 @@ type QrToolsNativeModule = {
   addWifiNetwork(network: WifiNetworkRequest): Promise<WifiAddResult>;
   openContactForm(contact: ContactFormRequest): Promise<void>;
   openCalendarEventForm(event: CalendarEventFormRequest): Promise<void>;
+  closeScanResult(): Promise<void>;
 };
 
-/** Native module for the Android Wi-Fi, contact, and calendar forms. */
+/** Native module for the Android forms and the screen scan sheet. */
 export default requireNativeModule<QrToolsNativeModule>('QrTools');

@@ -96,7 +96,7 @@ class CalendarEventRecord : Record {
   val isAllDay: Boolean = false
 }
 
-/** Exposes the Android system forms that the scan result actions need. */
+/** Opens the Android forms for the result actions, and closes the screen scan sheet. */
 class QrToolsModule : Module() {
   private var pendingWifiPromise: Promise? = null
 
@@ -116,11 +116,21 @@ class QrToolsModule : Module() {
       appContext.throwingActivity.startActivity(createCalendarEventIntent(event))
     }.runOnQueue(Queues.MAIN)
 
+    AsyncFunction("closeScanResult") {
+      closeScanResult()
+    }.runOnQueue(Queues.MAIN)
+
     OnActivityResult { _, payload ->
       if (payload.requestCode == WIFI_ADD_REQUEST_CODE) {
         resolveWifiRequest(payload.data)
       }
     }
+  }
+
+  /** Closes the screen scan sheet. Other activities stay open. */
+  private fun closeScanResult() {
+    val scanResultActivity = appContext.currentActivity as? ScanResultActivity
+    scanResultActivity?.finish()
   }
 
   /**

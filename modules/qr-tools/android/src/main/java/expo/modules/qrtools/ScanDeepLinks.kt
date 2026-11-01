@@ -6,8 +6,6 @@ import android.net.Uri
 
 private const val APP_SCHEME = "qrscanner"
 private const val CAMERA_HOST = "camera"
-private const val SCAN_RESULT_HOST = "scan-result"
-private const val VALUE_PARAMETER = "value"
 
 /** Builds the intents that open the React Native app from native tile code. */
 internal object ScanDeepLinks {
@@ -19,22 +17,6 @@ internal object ScanDeepLinks {
    */
   fun createCameraIntent(context: Context): Intent {
     val uri = Uri.Builder().scheme(APP_SCHEME).authority(CAMERA_HOST).build()
-    return createAppIntent(context, uri)
-  }
-
-  /**
-   * Creates the intent that opens the app and shows a scanned value.
-   *
-   * @param context The context that resolves the app package.
-   * @param value The text decoded from the QR code.
-   * @return An intent for the app's main activity.
-   */
-  fun createScanResultIntent(context: Context, value: String): Intent {
-    val uri = Uri.Builder()
-      .scheme(APP_SCHEME)
-      .authority(SCAN_RESULT_HOST)
-      .appendQueryParameter(VALUE_PARAMETER, value)
-      .build()
     return createAppIntent(context, uri)
   }
 

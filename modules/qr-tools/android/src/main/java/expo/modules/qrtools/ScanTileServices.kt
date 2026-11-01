@@ -61,6 +61,15 @@ class CameraScanTileService : ScanTileService() {
 
 /** Quick Settings tile that reads a QR code from the current screen. */
 class ScreenScanTileService : ScanTileService() {
-  /** @return The intent that starts the screen capture flow. */
-  override fun createScanIntent(): Intent = Intent(this, ScreenCaptureActivity::class.java)
+  /**
+   * Creates the intent that starts the screen capture flow. The flag closes a
+   * result sheet that the user left open. Without the flag, Android brings that
+   * old sheet to the front and does not start a new scan.
+   *
+   * @return The intent for the screen capture activity.
+   */
+  override fun createScanIntent(): Intent {
+    return Intent(this, ScreenCaptureActivity::class.java)
+      .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+  }
 }

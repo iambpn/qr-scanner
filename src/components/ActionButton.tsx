@@ -1,4 +1,9 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
+
+import { getSheetColors } from '../theme/sheetColors';
+
+const PRIMARY_BUTTON_COLOR = '#1565C0';
+const PRIMARY_LABEL_COLOR = '#FFFFFF';
 
 /** Props of {@link ActionButton}. */
 type ActionButtonProps = {
@@ -16,14 +21,18 @@ type ActionButtonProps = {
  * @returns The button element.
  */
 export function ActionButton({ label, onPress, isPrimary, isDisabled }: ActionButtonProps) {
+  const colors = getSheetColors(useColorScheme());
+  const backgroundColor = isPrimary ? PRIMARY_BUTTON_COLOR : colors.buttonBackground;
+  const labelColor = isPrimary ? PRIMARY_LABEL_COLOR : colors.text;
+
   return (
     <Pressable
       accessibilityRole="button"
       disabled={isDisabled}
       onPress={onPress}
-      style={[styles.button, isPrimary && styles.primaryButton, isDisabled && styles.disabled]}
+      style={[styles.button, { backgroundColor }, isDisabled && styles.disabled]}
     >
-      <Text style={[styles.label, isPrimary && styles.primaryLabel]}>{label}</Text>
+      <Text style={[styles.label, { color: labelColor }]}>{label}</Text>
     </Pressable>
   );
 }
@@ -31,22 +40,14 @@ export function ActionButton({ label, onPress, isPrimary, isDisabled }: ActionBu
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#EEF1F5',
     borderRadius: 12,
     paddingVertical: 14,
-  },
-  primaryButton: {
-    backgroundColor: '#1565C0',
   },
   disabled: {
     opacity: 0.5,
   },
   label: {
-    color: '#1B2430',
     fontSize: 16,
     fontWeight: '600',
-  },
-  primaryLabel: {
-    color: '#FFFFFF',
   },
 });

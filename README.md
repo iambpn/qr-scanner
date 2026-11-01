@@ -6,11 +6,12 @@ QR Scanner is an Android app that reads QR codes and shows their content. The ap
 
 - The app opens on the camera and is ready to scan.
 - The app shows the content of each QR code.
+- The app follows the light or dark theme of the system.
 - If the code contains a Wi-Fi network, the app asks you to add the network.
 - The app shows an action for each QR type: open a link, call, send an email or SMS, open a map, save a contact, or add a calendar event.
 - Two Quick Settings tiles start a scan:
   - **Scan with camera** opens the camera.
-  - **Scan screen** reads a QR code from the current screen.
+  - **Scan screen** reads a QR code from the current screen. The result sheet opens above the app that you are using. When you close the sheet, you stay in that app.
 
 ## Build the app on Expo servers
 
@@ -131,6 +132,7 @@ npx expo-doctor
 ## Limitations
 
 - The **Scan screen** tile shows the Android capture prompt on each tap.
+- If QR Scanner is not running, the **Scan screen** result sheet needs a short time to load.
 - If the screen shows more than one QR code, the app reads the largest code.
 - The app cannot read apps that block screenshots.
 - On Android 10 and earlier, and for WEP or enterprise networks, the app copies the password and opens Android Wi-Fi settings.

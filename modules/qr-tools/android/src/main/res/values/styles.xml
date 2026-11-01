@@ -3,4 +3,12 @@
     <item name="android:backgroundDimEnabled">false</item>
     <item name="android:windowAnimationStyle">@null</item>
   </style>
+
+  <!-- React Native activities need an AppCompat theme. -->
+  <style name="QrToolsScanResultTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <item name="android:backgroundDimEnabled">false</item>
+    <item name="android:windowAnimationStyle">@null</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowIsTranslucent">true</item>
+  </style>
 </resources>

@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { ResultSheet } from './src/components/ResultSheet';
 import { ScannerScreen } from './src/components/ScannerScreen';
-import { useTileLink, type TileLink } from './src/hooks/useTileLink';
+import { useTileLink } from './src/hooks/useTileLink';
 
 /**
  * Time that the camera ignores a closed QR code. Without this wait, a code that
@@ -20,12 +20,12 @@ export default function App() {
   const [scannedValue, setScannedValue] = useState<string | null>(null);
   const closedScanRef = useRef({ value: '', ignoreUntilMs: 0 });
 
-  /** Shows the result from the screen tile, or the camera for the camera tile. */
-  const handleTileLink = useCallback((tileLink: TileLink) => {
-    setScannedValue(tileLink.kind === 'showScanResult' ? tileLink.value : null);
+  /** Shows the camera when the user taps the camera tile. */
+  const handleCameraTile = useCallback(() => {
+    setScannedValue(null);
   }, []);
 
-  useTileLink(handleTileLink);
+  useTileLink(handleCameraTile);
 
   /** Shows a camera scan, unless the user just closed the same code. */
   const handleQrScanned = (value: string) => {

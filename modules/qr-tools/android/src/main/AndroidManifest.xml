@@ -39,5 +39,16 @@
       android:exported="false"
       android:taskAffinity=""
       android:theme="@style/QrToolsTransparentTheme" />
+
+    <!-- This activity starts in the task of ScreenCaptureActivity, so the user's app stays
+         below it. It has no fixed orientation because the app below it sets the orientation. -->
+    <activity
+      android:name="expo.modules.qrtools.ScanResultActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|smallestScreenSize"
+      android:excludeFromRecents="true"
+      android:exported="false"
+      android:taskAffinity=""
+      android:theme="@style/QrToolsScanResultTheme"
+      android:windowSoftInputMode="adjustResize" />
   </application>
 </manifest>
