@@ -17,6 +17,8 @@ QR Scanner is an Android app that reads QR codes and shows their content. The ap
 
 EAS Build makes the app on Expo servers, so you do not need the Android SDK. You need an [Expo account](https://expo.dev/signup) and Node.js.
 
+The `projectId` in `app.json` belongs to the Expo account of the project owner. If you use your own Expo account, remove `extra.eas.projectId` from `app.json` before you build.
+
 1. Install the dependencies:
 
    ```bash
@@ -110,7 +112,7 @@ Android does not add the tiles automatically.
 
 ## Develop on your computer
 
-A local build needs the Android SDK and Java. Expo Go cannot run this app because the app has custom native code.
+A local build needs the Android SDK and Java. Expo Go cannot run this app because the app has custom native code. The custom code is in the [qr-tools module](modules/qr-tools/README.md).
 
 1. Set `ANDROID_HOME` to the Android SDK folder.
 2. Start a device or an emulator.
