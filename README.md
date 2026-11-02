@@ -137,4 +137,3 @@ npx expo-doctor
 - The app cannot read apps that block screenshots.
 - On Android 10 and earlier, and for WEP or enterprise networks, the app copies the password and opens Android Wi-Fi settings.
 - The app was tested on an Android 14 emulator only.
-- `com.poc.qrscanner` is a placeholder package name. Change the name before you publish the app.

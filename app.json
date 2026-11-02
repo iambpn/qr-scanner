@@ -11,7 +11,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.poc.qrscanner",
+      "package": "com.iambpn.qrscanner",
       "adaptiveIcon": {
         "backgroundColor": "#1565C0",
         "foregroundImage": "./assets/android-icon-foreground.png",
