@@ -20,12 +20,13 @@ const LIGHT_SHEET_COLORS: SheetColors = {
   buttonBackground: '#EEF1F5',
 };
 
+/** Pure black background with neutral white and gray colors. */
 const DARK_SHEET_COLORS: SheetColors = {
-  background: '#1E2630',
-  text: '#F1F4F8',
-  labelText: '#A8B3C2',
-  messageText: '#CBD3DE',
-  buttonBackground: '#323C49',
+  background: '#000000',
+  text: '#FFFFFF',
+  labelText: '#B3B3B3',
+  messageText: '#D6D6D6',
+  buttonBackground: '#2A2A2A',
 };
 
 /**

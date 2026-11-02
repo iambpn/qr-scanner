@@ -48,6 +48,18 @@ describe('getSheetColors', () => {
     assert.deepEqual(getSheetColors(undefined), lightColors);
   });
 
+  it('uses pure black and neutral grays for the dark scheme', () => {
+    const darkColors = getSheetColors('dark');
+
+    assert.equal(darkColors.background, '#000000');
+
+    for (const color of Object.values(darkColors)) {
+      const channels = [color.slice(1, 3), color.slice(3, 5), color.slice(5, 7)];
+
+      assert.equal(new Set(channels).size, 1, `${color} has a color tint`);
+    }
+  });
+
   for (const scheme of ['light', 'dark']) {
     it(`keeps the ${scheme} text readable`, () => {
       const colors = getSheetColors(scheme);
