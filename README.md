@@ -6,7 +6,7 @@ QR Scanner is an Android app that reads QR codes and shows their content. The ap
 
 - The app opens on the camera and is ready to scan.
 - The app shows the content of each QR code.
-- The app follows the light or dark theme of the system.
+- The result sheet is always pure black. The splash screen follows the light or dark theme of the system.
 - If the code contains a Wi-Fi network, the app asks you to add the network.
 - The app shows an action for each QR type: open a link, call, send an email or SMS, open a map, save a contact, or add a calendar event.
 - Two Quick Settings tiles start a scan:

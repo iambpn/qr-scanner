@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { getSheetColors } from './sheetColors.ts';
+import { SHEET_COLORS } from './sheetColors.ts';
 
 const MIN_TEXT_CONTRAST = 4.5;
 
@@ -38,41 +38,27 @@ function getContrast(firstColor: string, secondColor: string): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-describe('getSheetColors', () => {
-  it('uses the dark colors only for the dark scheme', () => {
-    const lightColors = getSheetColors('light');
+describe('SHEET_COLORS', () => {
+  it('uses pure black and neutral grays', () => {
+    assert.equal(SHEET_COLORS.background, '#000000');
 
-    assert.notDeepEqual(getSheetColors('dark'), lightColors);
-    assert.deepEqual(getSheetColors('unspecified'), lightColors);
-    assert.deepEqual(getSheetColors(null), lightColors);
-    assert.deepEqual(getSheetColors(undefined), lightColors);
-  });
-
-  it('uses pure black and neutral grays for the dark scheme', () => {
-    const darkColors = getSheetColors('dark');
-
-    assert.equal(darkColors.background, '#000000');
-
-    for (const color of Object.values(darkColors)) {
+    for (const color of Object.values(SHEET_COLORS)) {
       const channels = [color.slice(1, 3), color.slice(3, 5), color.slice(5, 7)];
 
       assert.equal(new Set(channels).size, 1, `${color} has a color tint`);
     }
   });
 
-  for (const scheme of ['light', 'dark']) {
-    it(`keeps the ${scheme} text readable`, () => {
-      const colors = getSheetColors(scheme);
-      const textPairs = [
-        [colors.text, colors.background],
-        [colors.labelText, colors.background],
-        [colors.messageText, colors.background],
-        [colors.text, colors.buttonBackground],
-      ];
+  it('keeps the text readable', () => {
+    const textPairs = [
+      [SHEET_COLORS.text, SHEET_COLORS.background],
+      [SHEET_COLORS.labelText, SHEET_COLORS.background],
+      [SHEET_COLORS.messageText, SHEET_COLORS.background],
+      [SHEET_COLORS.text, SHEET_COLORS.buttonBackground],
+    ];
 
-      for (const [textColor, backgroundColor] of textPairs) {
-        assert.ok(getContrast(textColor, backgroundColor) >= MIN_TEXT_CONTRAST);
-      }
-    });
-  }
+    for (const [textColor, backgroundColor] of textPairs) {
+      assert.ok(getContrast(textColor, backgroundColor) >= MIN_TEXT_CONTRAST);
+    }
+  });
 });

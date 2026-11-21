@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { getSheetColors } from '../theme/sheetColors';
+import { SHEET_COLORS } from '../theme/sheetColors';
 
 const PRIMARY_BUTTON_COLOR = '#1565C0';
 const PRIMARY_LABEL_COLOR = '#FFFFFF';
@@ -21,9 +21,8 @@ type ActionButtonProps = {
  * @returns The button element.
  */
 export function ActionButton({ label, onPress, isPrimary, isDisabled }: ActionButtonProps) {
-  const colors = getSheetColors(useColorScheme());
-  const backgroundColor = isPrimary ? PRIMARY_BUTTON_COLOR : colors.buttonBackground;
-  const labelColor = isPrimary ? PRIMARY_LABEL_COLOR : colors.text;
+  const backgroundColor = isPrimary ? PRIMARY_BUTTON_COLOR : SHEET_COLORS.buttonBackground;
+  const labelColor = isPrimary ? PRIMARY_LABEL_COLOR : SHEET_COLORS.text;
 
   return (
     <Pressable

@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { Alert, Modal, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { Alert, Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { parseQrContent } from '../qr/parseQrContent';
 import { copyText, getPrimaryAction, type QrAction } from '../qr/qrActions';
 import { getQrPresentation } from '../qr/qrPresentation';
-import { getSheetColors } from '../theme/sheetColors';
+import { SHEET_COLORS } from '../theme/sheetColors';
 import { ActionButton } from './ActionButton';
 import { WifiPrompt } from './WifiPrompt';
 
@@ -22,7 +22,6 @@ type ResultSheetProps = {
  * @returns The modal sheet.
  */
 export function ResultSheet({ value, onClose }: ResultSheetProps) {
-  const colors = getSheetColors(useColorScheme());
   const content = useMemo(() => (value === null ? null : parseQrContent(value)), [value]);
 
   if (value === null || content === null) {
@@ -35,14 +34,14 @@ export function ResultSheet({ value, onClose }: ResultSheetProps) {
   return (
     <Modal animationType="slide" onRequestClose={onClose} transparent visible>
       <View style={styles.backdrop}>
-        <View style={[styles.sheet, { backgroundColor: colors.background }]}>
-          <Text style={[styles.title, { color: colors.text }]}>{title}</Text>
+        <View style={styles.sheet}>
+          <Text style={styles.title}>{title}</Text>
 
           <ScrollView style={styles.details}>
             {rows.map((row) => (
               <View key={row.label} style={styles.row}>
-                <Text style={[styles.rowLabel, { color: colors.labelText }]}>{row.label}</Text>
-                <Text selectable style={[styles.rowValue, { color: colors.text }]}>
+                <Text style={styles.rowLabel}>{row.label}</Text>
+                <Text selectable style={styles.rowValue}>
                   {row.value}
                 </Text>
               </View>
@@ -90,6 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   sheet: {
+    backgroundColor: SHEET_COLORS.background,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     gap: 14,
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
+    color: SHEET_COLORS.text,
     fontSize: 22,
     fontWeight: '700',
   },
@@ -109,10 +110,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   rowLabel: {
+    color: SHEET_COLORS.labelText,
     fontSize: 13,
     marginBottom: 2,
   },
   rowValue: {
+    color: SHEET_COLORS.text,
     fontSize: 16,
   },
   actions: {
