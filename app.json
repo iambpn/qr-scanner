@@ -3,7 +3,7 @@
     "name": "QR Scanner",
     "slug": "qr-scanner",
     "scheme": "qrscanner",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -12,6 +12,7 @@
     },
     "android": {
       "package": "com.iambpn.qrscanner",
+      "versionCode": 2,
       "adaptiveIcon": {
         "backgroundColor": "#1565C0",
         "foregroundImage": "./assets/android-icon-foreground.png",
